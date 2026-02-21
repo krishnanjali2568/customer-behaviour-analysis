@@ -120,8 +120,7 @@ Data-Analytics-Project/
 
 ### Clone repository
 ```
-git clone https://github.com/your-username/data-analytics-project.git
-cd data-analytics-project
+https://github.com/krishnanjali2568/customer-behaviour-analysis.git
 ```
 
 ### Install dependencies
