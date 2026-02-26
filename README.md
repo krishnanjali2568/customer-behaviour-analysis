@@ -1,87 +1,14 @@
 # 📊 Customer Shopping Behavior Analysis
 
-An end-to-end data analytics project analyzing customer shopping patterns using Python, SQL, and Power BI — transforming raw transaction data into actionable business insights.
+An end-to-end data analytics project analyzing 3,900 customer transactions to uncover shopping patterns, customer segments, and revenue drivers — using Python, SQL (PostgreSQL), and Power BI.
 
 ---
 
-## 📌 Project Overview
+## 🗂️ Project Overview
 
-This project analyzes a structured retail dataset of **3,900 customer transactions** across 18 features including demographics, purchase categories, payment methods, seasonal trends, and review ratings.
+A retail company wants to better understand its customers' shopping behavior to improve sales, customer satisfaction, and long-term loyalty. This project analyzes transactional data across demographics, product categories, and sales channels to answer:
 
-The goal was to identify customer behavior patterns, top-performing product categories, and revenue drivers to support data-driven business decision-making.
-
----
-
-## 📂 Dataset
-
-- **Source:** Customer Shopping Behavior Dataset (CSV)
-- **Records:** 3,900 transactions
-- **Features:** 18 columns including Age, Gender, Category, Purchase Amount, Season, Payment Method, Subscription Status, Review Rating, and more
-
----
-
-## 🛠️ Tools & Technologies
-
-| Tool | Purpose |
-|------|---------|
-| Python (Pandas, NumPy) | Data cleaning, EDA |
-| SQL (PostgreSQL) | Data querying and aggregation |
-| Power BI | Interactive dashboard |
-| Jupyter Notebook | Analysis environment |
-| GitHub | Version control |
-
----
-
-## 🔍 Project Steps
-
-### 1. Data Loading & Inspection
-- Imported dataset using Pandas
-- Checked for null values, data types, and structure
-- Dataset had 3,900 rows and 18 columns with no major missing values
-
-### 2. Data Cleaning & Preprocessing
-- Handled missing Review Rating values
-- Standardized categorical columns (Gender, Season, Category)
-- Created Age Group bins (18–25, 26–35, 36–50, 51–70) for segmentation analysis
-- Verified data types and converted where necessary
-
-### 3. Exploratory Data Analysis (EDA)
-- Performed descriptive statistics on purchase amounts and ratings
-- Analyzed distribution of purchases across categories, seasons, and age groups
-- Identified trends in payment preferences and subscription behavior
-
-### 4. SQL Analysis (PostgreSQL)
-- Loaded cleaned dataset into PostgreSQL
-- Wrote queries using GROUP BY, JOINS, aggregations (SUM, AVG, COUNT)
-- Extracted insights on revenue by category, season, and customer segment
-
-### 5. Power BI Dashboard
-- Connected Power BI to cleaned dataset
-- Built interactive dashboard with KPIs, filters, and slicers
-- Visualized revenue trends, customer segmentation, and product performance
-
----
-
-## 📊 Key Insights & Findings
-
-- **Clothing dominated purchases** with 1,737 transactions (44.5% of total), followed by Accessories (1,240) and Footwear (599)
-- **Footwear had the highest average purchase value** at $60.26, slightly above Clothing ($60.03)
-- **Fall was the top revenue season** generating $60,018, while Summer was the lowest at $55,777
-- **18–25 age group had the highest average spend** at $60.65 per transaction
-- **Only 27% of customers are subscribers** (1,053 out of 3,900) — indicating a significant opportunity for subscription growth
-- **Average review rating was 3.75/5** — suggesting room to improve customer satisfaction
-- **Payment methods were evenly distributed** — PayPal (677), Credit Card (671), and Cash (670) were the top three
-- **Discount impact was minimal** — discounted purchases averaged $59.28 vs $60.13 without discounts, suggesting customers buy regardless of discounts
-
----
-
-## 💡 Business Recommendations
-
-- Focus marketing campaigns on **Fall and Spring seasons** for maximum revenue
-- Target **18–25 age group** with premium product offers as they show highest spend
-- Invest in **subscription conversion strategies** — only 27% are subscribers
-- Review discount strategy — discounts are not significantly driving higher purchase amounts
-- Improve customer experience to push average rating above 4.0
+> **"How can the company leverage consumer shopping data to identify trends, improve customer engagement, and optimize marketing and product strategies?"**
 
 ---
 
@@ -90,15 +17,98 @@ The goal was to identify customer behavior patterns, top-performing product cate
 ```
 customer-behaviour-analysis/
 │
-├── customer_shopping_behavior.csv         # Raw dataset
-├── Customer_Shopping_Behavior_Analysis.ipynb  # Python EDA notebook
-├── customer_behavior_sql_queries.sql      # SQL queries
-├── customer_behavior_dashboard.pbix       # Power BI dashboard
-├── Customer Shopping Behavior Analysis.pdf  # Business report
-├── Business Problem Document.pdf          # Problem statement
-├── Customer-Shopping-Behavior-Analysis.pptx  # Presentation
-└── README.md
+├── Customer_Shopping_Behavior_Analysis.ipynb   # Python EDA & data cleaning
+├── customer_behavior_sql_queries.sql           # 10 business SQL queries
+├── customer_behavior_dashboard.pbix            # Interactive Power BI dashboard
+├── customer_shopping_behavior.csv              # Raw dataset (Kaggle)
+├── Customer Shopping Behavior Analysis.pdf     # Full project report
+├── Customer-Shopping-Behavior-Analysis.pptx   # Executive presentation
+└── Business Problem Document.pdf              # Problem statement
 ```
+
+---
+
+## 📦 Dataset
+
+- **Source:** Kaggle — Customer Shopping Behavior Dataset
+- **Rows:** 3,900 transactions
+- **Columns:** 18 features including:
+  - Customer demographics: Age, Gender, Location, Subscription Status
+  - Purchase details: Item, Category, Purchase Amount (USD), Season
+  - Behavior: Discount Applied, Previous Purchases, Review Rating, Shipping Type
+
+---
+
+## 🛠️ Tools & Technologies
+
+| Tool | Purpose |
+|------|---------|
+| Python (Pandas, NumPy) | Data cleaning & EDA |
+| PostgreSQL | SQL analysis & querying |
+| Power BI | Interactive dashboard |
+| Jupyter Notebook | Analysis environment |
+| GitHub | Version control |
+
+---
+
+## 🔍 Project Steps
+
+### 1. Data Cleaning & Preparation (Python)
+- Imported dataset using Pandas and verified structure with `df.info()` and `.describe()`
+- Handled 37 missing values in the `review_rating` column using median imputation per product category
+- Renamed columns to snake_case for consistency
+- Engineered new features: `age_group` (binned) and `purchase_frequency_days`
+- Verified redundancy between `discount_applied` and `promo_code_used` — dropped `promo_code_used`
+- Connected Python to PostgreSQL and loaded the cleaned DataFrame for SQL analysis
+
+### 2. SQL Analysis (PostgreSQL)
+Wrote 10 business queries covering:
+- Revenue by gender
+- High-spending discount users
+- Top 5 products by review rating
+- Shipping type comparison
+- Subscriber vs. non-subscriber spend
+- Discount-dependent products
+- Customer segmentation (New / Returning / Loyal)
+- Top 3 products per category
+- Repeat buyers and subscription behavior
+- Revenue contribution by age group
+
+### 3. Power BI Dashboard
+Built an interactive dashboard with:
+- KPI cards: 3.9K customers, $59.76 avg purchase, 3.75 avg rating
+- Revenue and sales by category
+- Revenue and sales by age group
+- Subscription status breakdown
+- Interactive filters: Gender, Category, Shipping Type, Subscription Status
+
+---
+
+## 📈 Key Findings
+
+| Insight | Finding |
+|--------|---------|
+| 💰 Revenue by Gender | Male customers generated $157,890 vs. Female $75,191 |
+| 🏆 Top Age Group by Revenue | Young Adults contributed the highest revenue at $62,143 |
+| ⭐ Highest Rated Product | Gloves (avg rating 3.86), followed by Sandals (3.84) |
+| 📦 Top Category | Clothing — Blouse and Pants were the most purchased items (171 orders each) |
+| 🔖 Most Discount-Dependent Product | Hat (50% of purchases used a discount) |
+| 🚚 Shipping Preference | Express shipping users spent slightly more ($60.48) vs. Standard ($58.46) |
+| 👥 Customer Segments | 3,116 Loyal customers, 701 Returning, 83 New |
+| 📋 Subscription Impact | 73% of customers are non-subscribers; both groups have similar avg spend (~$59) |
+| 🔁 Repeat Buyers | Among customers with >5 purchases, 2,518 are non-subscribers vs. 958 subscribers |
+| 💡 High-Value Discount Users | 839 customers used discounts but still spent above average purchase amount |
+
+---
+
+## 💡 Business Recommendations
+
+- **Boost Subscriptions** — Introduce exclusive perks for subscribers since avg spend is similar; loyalty programs could convert the 73% non-subscribers
+- **Target Young Adults** — Highest revenue segment; prioritize marketing campaigns toward this age group
+- **Focus on Clothing Category** — Highest sales volume; expand product range and seasonal promotions
+- **Revise Discount Strategy** — Hat, Sneakers, and Coat have ~50% discount rates; review margin impact
+- **Reward Loyal Customers** — 80% of customers are in the Loyal segment; implement tiered loyalty rewards
+- **Leverage Express Shipping** — Higher spend in express users; offer express shipping promotions to increase basket size
 
 ---
 
@@ -109,41 +119,34 @@ customer-behaviour-analysis/
 git clone https://github.com/krishnanjali2568/customer-behaviour-analysis.git
 ```
 
-### Install dependencies
+### Install Python dependencies
 ```bash
 pip install pandas numpy matplotlib seaborn sqlalchemy psycopg2
 ```
 
-### Run Python analysis
+### Run the analysis
 - Open `Customer_Shopping_Behavior_Analysis.ipynb` in Jupyter Notebook
-- Run all cells
+- Run all cells sequentially
 
 ### Run SQL queries
 - Import `customer_shopping_behavior.csv` into PostgreSQL
 - Execute queries from `customer_behavior_sql_queries.sql`
 
-### Open Power BI Dashboard
+### View Power BI dashboard
 - Open `customer_behavior_dashboard.pbix` in Power BI Desktop
-- Refresh data source if needed
+- Refresh the data source if needed
 
 ---
 
-## ✅ Skills Demonstrated
+## 🧠 Skills Demonstrated
 
-- Data Cleaning & Preprocessing
-- Exploratory Data Analysis (EDA)
-- SQL Querying & Database Management
-- Power BI Dashboard Development
-- Business Reporting & Insights Generation
-- Data-Driven Decision Making
+`Data Cleaning` `Exploratory Data Analysis` `Feature Engineering` `SQL Querying` `Window Functions` `CTEs` `PostgreSQL` `Power BI Dashboard` `KPI Design` `Business Reporting` `Data Visualization` `Customer Segmentation`
 
 ---
 
 ## 👩‍💻 Author
 
-**Krishnanjali R**
-Aspiring Data Analyst
-Python | SQL | Power BI | Data Analytics
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/krishnanjalir-b2b449363)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black)](https://github.com/krishnanjali2568)
+**Krishnanjali R**  
+Aspiring Data Analyst | Python | SQL | Power BI  
+📧 krishnanjali2568@gmail.com  
+🔗 [LinkedIn](https://linkedin.com/in/krishnanjalir-b2b449363) | [GitHub](https://github.com/krishnanjali2568)
